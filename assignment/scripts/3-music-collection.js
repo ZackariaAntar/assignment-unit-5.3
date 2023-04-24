@@ -50,17 +50,17 @@ console.log(collection);
 //   - Console.log the number of items in the array.
 //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
 
-function showCollection(array, parameter){
+function showCollection(array, index){
      console.log(array.length);
-     for (items of array){
-          for (props in items){
-               console.log(`${props.Title} by ${props.Artist}, published in ${props.Year}`)
+     for (items in array[index]){
+          console.log(`This is what items shows: ${items}`)
+          // console.log(array[index])
+          //console.log(`${array[album.Title]} by ${array[items.Artist]}, published in ${array[items.Year]}`)
           }
      }
 
 
-}
-
+showCollection(collection, 0)
 
 
 //  - Test the `showCollection` function.

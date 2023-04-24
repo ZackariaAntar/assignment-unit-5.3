@@ -11,7 +11,7 @@ let collection = []
 
 
 function addToCollection(title, artist, yearPublished){
-      album ={
+     album ={
           Title: title,               
           Artist: artist,
           Year: yearPublished
@@ -44,37 +44,34 @@ console.log(album);
 addToCollection("99.9%", "Kaytranada", "2016")
 console.log(album);
 
-// addToCollection("Little Dragon", "Little Dragon", "2007")
-// console.log(album);
+addToCollection("Little Dragon", "Little Dragon", "2007")
+console.log(album);
 
-// addToCollection("Cross", "Justice", "2007")
-// console.log(album);
+addToCollection("Cross", "Justice", "2007")
+console.log(album);
 
-// addToCollection("BUBBA", "Kaytranada", "2019")
-// console.log(album);
+addToCollection("BUBBA", "Kaytranada", "2019")
+console.log(album);
 
-// addToCollection("Malibu", "Anderson .Paak", "2016")
-// console.log(album);
+addToCollection("Malibu", "Anderson .Paak", "2016")
+console.log(album);
 
-console.log(collection[1].Artist);
+console.log(collection);
 
 // - Add a function named `showCollection`. This function should:
 //   - Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)
 //   - Console.log the number of items in the array.
 //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
 
-// function showCollection(array, index){
-//      console.log(array.length);
-//      for (items in array[index]){
-//           console.log('');
-//           console.log(`This is what items shows: ${items}`)
-//           console.log('this is what array[items] shows: ', array[index])
-//           //console.log(`${array[album.Title]} by ${array[items.Artist]}, published in ${array[items.Year]}`)
-//           }
-//      }
+function showCollection(array, index){
+     console.log(array.length);
+     for (items in array[index]){
+          console.log(`${array[index].Title} by ${array[index].Artist}, published in ${array[index].Year}`)
+          }
+     }
 
 
-// showCollection(collection, 0)
+showCollection(collection, 0)
 
 
 //  - Test the `showCollection` function.

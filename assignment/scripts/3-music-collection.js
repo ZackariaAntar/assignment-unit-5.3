@@ -11,7 +11,7 @@ let collection = []
 
 
 function addToCollection(title, artist, yearPublished){
-       let newEntry ={
+         newEntry ={
           title: title,
           artist: artist,
           year: yearPublished
@@ -20,11 +20,24 @@ function addToCollection(title, artist, yearPublished){
      return newEntry;
 };
 
-
 //  - Test the `addToCollection` function:
 //   - Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
 //   - Console.log each album as added using the returned value.
 //   - After all are added, console.log the `collection` array.
+addToCollection("Babylon by Bus", "Bob Marley and the Wailers", "1978")
+console.log(newEntry);
+addToCollection("99.9%", "Kaytranada", "2016")
+console.log(newEntry);
+addToCollection("Little Dragon", "Little Dragon", "2007")
+console.log(newEntry);
+addToCollection("Cross", "Justice", "2007")
+console.log(newEntry);
+addToCollection("BUBBA", "Kaytranada", "2019")
+console.log(newEntry);
+addToCollection("Malibu", "Anderson .Paak", "2016")
+console.log(newEntry);
+
+console.log(collection);
 
 // - Add a function named `showCollection`. This function should:
 //   - Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)

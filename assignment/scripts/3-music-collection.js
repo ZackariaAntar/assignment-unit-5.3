@@ -27,15 +27,15 @@ function addToCollection(title, artist, yearPublished){
 addToCollection("Babylon by Bus", "Bob Marley and the Wailers", "1978")
 console.log(album);
 // addToCollection("99.9%", "Kaytranada", "2016")
-// console.log(title);
+// console.log(album);
 // addToCollection("Little Dragon", "Little Dragon", "2007")
-// console.log(title);
+// console.log(album);
 // addToCollection("Cross", "Justice", "2007")
-// console.log(title);
+// console.log(album);
 // addToCollection("BUBBA", "Kaytranada", "2019")
-// console.log(title);
+// console.log(album);
 // addToCollection("Malibu", "Anderson .Paak", "2016")
-// console.log(title);
+// console.log(album);
 
 console.log(collection);
 

@@ -20,16 +20,6 @@ function addToCollection(title, artist, yearPublished){
           return album;
 };
 
-// function addToCollection(title, artist, yearPublished){
-//      album ={};
-//      album.Title= title;
-//      album.Artist= artist;
-//      album.Year= yearPublished;
-//      collection.push(album);
-//      return album;
-// };
-
-
 
 
 
@@ -56,22 +46,23 @@ console.log(album);
 addToCollection("Malibu", "Anderson .Paak", "2016")
 console.log(album);
 
-console.log(collection);
+// console.log(collection);
 
 // - Add a function named `showCollection`. This function should:
 //   - Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)
 //   - Console.log the number of items in the array.
 //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
 
-function showCollection(array, index){
+function showCollection(array){
      console.log(array.length);
-     for (items in array[index]){
-          console.log(`${array[index].Title} by ${array[index].Artist}, published in ${array[index].Year}`)
+     for (let i=0; i<array.length; i++){
+          console.log(`"${array[i].Title}" by ${array[i].Artist} was published in ${array[i].Year}.`)
+          
           }
      }
 
 
-showCollection(collection, 0)
+showCollection(collection)
 
 
 //  - Test the `showCollection` function.

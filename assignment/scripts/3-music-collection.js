@@ -46,7 +46,7 @@ console.log(album);
 addToCollection("Malibu", "Anderson .Paak", "2016")
 console.log(album);
 
-// console.log(collection);
+console.log(collection);
 
 // - Add a function named `showCollection`. This function should:
 //   - Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)
@@ -56,23 +56,32 @@ console.log(album);
 function showCollection(array){
      console.log(array.length);
      for (let i=0; i<array.length; i++){
-          console.log(`"${array[i].Title}" by ${array[i].Artist} was published in ${array[i].Year}.`)
-          
-          }
-     }
-
-
-showCollection(collection)
-
+          console.log(`"${array[i].Title}" by ${array[i].Artist} was published in ${array[i].Year}.`);
+          };
+     };
 
 //  - Test the `showCollection` function.
+showCollection(collection)
 
 // - Add a function named `findByArtist`. This function should:
 //   - Take in `artist` (a string) parameter
 //   - Create an array to hold any results, empty to start
 //   - Loop through the `collection` and add any objects with a matching artist to the array.
 //   - Return the array with the matching results. If no results are found, return an empty array.
+function findByArtist(artist, array){
+     artistInArray = []
+     for (let i=0; i<array.length; i++){
+          if (array[i].Artist.includes(artist)){
+               artistInArray.push(artist);
+          };
+     };return artistInArray
+};
 
+console.log(findByArtist('Kaytranada', collection))
+console.log(findByArtist('Justice', collection))
+console.log(findByArtist('Little Dragon', collection))
+console.log(findByArtist('Anderson .Paak', collection))
+console.log(findByArtist('Bob Marley and the Wailers', collection))
 // - Test the `findByArtist` function. Make sure to test with an artist you know is in the collection, as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are found.
 
 // > When testing your functions, write all tests in the JavaScript file!

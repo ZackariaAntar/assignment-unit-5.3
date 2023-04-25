@@ -99,6 +99,29 @@ console.log(findByArtist('Bob Marley and the Wailers', collection))
 //     - If no results are found, return an empty array.
 //     - If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
 
+function search({Artist: name, Year: date}, array){
+     serachResults = []
+     for (let i=0; i<array.length; i++){
+           if (array[i].Artist.includes(name) && array[i].Year.includes(date)){
+               serachResults.push({Artist: array[i].Artist, Year: array[i].Year});
+               return serachResults;
+          } else 
+               console.log(`So sorry, we couldn't find what you were looking for, here's what we do have:. Album: "${array[i].Title}", Artist: ${array[i].Artist}, Year: ${array[i].Year}.`);
+                    
+     };
+ 
+};
+
+
+
+
+search({Artist: 'Justice', Year: 2007}, collection)
+console.log(serachResults);
+
+
+
+
+
 // - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
 //   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
 //   - Update `search` to allow a `trackName` search criteria. 

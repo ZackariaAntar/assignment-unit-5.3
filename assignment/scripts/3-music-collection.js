@@ -197,27 +197,40 @@ function showCollection(array){
 // // - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
 // //        
 
-function search({ Artist: name, Year: date }, trackName, array){
+function search(name, date, trackName, array){
      serachResults = [];     
      for (items of array) {
-          if (name === items['Artist'] && date === items['Year']) { // could also be name === items['Artist'] || date === items['Year'] 
+          for (songs of items['Tracks']) {
+               if (songs.includes(trackName)) {
+                    serachResults.push(trackName, items['Title']);
+                    return console.log("Here's what we found:"), serachResults;          
+               }
+               else if (name === items['Artist'] && date === items['Year']) { // could also be name === items['Artist'] || date === items['Year'] 
                     serachResults.push(items);          
+                    return console.log("Here's what we found:"), serachResults;
                };
-     };
-     if (serachResults.length === 0) {
-          return console.log("So sorry, we couldn't find what you were looking for, here's what we do have:\n", array);
+                              
+          }if (serachResults.length === 0) {
+               return console.log("So sorry, we couldn't find what you were looking for, here's what we do have:\n", array);
           
-     }return console.log("Here's what we found:"), serachResults;
+          };
+     
+          
+     };
      
      
 }; 
 
-// search({Artist: 'Justice', Year: '2007'}, collection)
+
+// search('Justice', '2007', 'Genesis', collection)
 // console.log(serachResults);
-// search({Artist: 'Ray Charles', Year: '1957'}, collection)
+// search('Kaytranada', '2016', 'adfsgdfsg', collection)
+// search('Justice', '2007', 'garble', collection)
+// search('Little Dragon', '2007', collection)
+// search('Ray Charles', '1957', collection)
 // console.log(serachResults);
-// search({Artist: 'Boney M.', Year: '1976'}, collection)
-// console.log(serachResults);
+search('Boney M.', '1976', null ,collection)
+console.log(serachResults);
 
 // // =============================================================================================== //
 // - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:

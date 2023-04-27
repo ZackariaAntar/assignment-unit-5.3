@@ -129,58 +129,75 @@ console.log('***** Music Collection *****')
 //   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
 let collection = []
 
-function addToCollection(title, artist, yearPublished,[{tracks}]){
-     album ={
+function addToCollection(title, artist, yearPublished, tracks){
+    
+     album = {
           Title: title,               
           Artist: artist,
           Year: yearPublished,
-          Tracks: [{tracks}],
+          Tracks: tracks,
+                  
      };
           collection.push(album);
           return album;
 };
-addToCollection("Babylon by Bus", "Bob Marley and the Wailers", '1978', [{'Positive Vibrations': '5:50', 'Punky Reggae Party': '5:51', 'Exodus': '7:41'}] )
-addToCollection("99.9%", "Kaytranada", '2016', [{'TRACK UNO': '5:44', 'BUS RIDE': '2:13', 'GOT IT GOOD': '3:48'}])
-addToCollection("Little Dragon", "Little Dragon", '2007', [{'Twice': '3:06', 'Turn Left': '4:05', 'No Love': '4:26'}])
-addToCollection("Cross", "Justice", '2007', [{'Genesis': '3:54', 'Let There Be Light': '4:55', 'D.A.N.C.E': '4:02'}])
-addToCollection("BUBBA", "Kaytranada", '2019', [{'DO IT': '2:12', '2 The Music': '3:55', 'Go DJ': '2:36'}])
-addToCollection("Malibu", "Anderson .Paak", '2016', [{'The Bird': '3:37', "Heart Don't Stand a Chance": '5:12', 'The Waters': '2:54'}])
-addToCollection("Ray Charles", "Ray Charles", '1957', [{"Ain't That Love": '2:53', 'Drown in My Own Tears': '3:21', 'Come Back Baby': '3:06'}])
 
-// ============================= SHOW COLLECTION ================================================= //
-//   - Update the `showCollection` function to display the list of tracks 
-//     for each album with its name and duration.;
+let bobTracks = ['Positive Vibrations: 5:50', 'Punky Reggae Party: 5:51', 'Exodus: 7:41'];
+let kayTracks = ['TRACK UNO : 5:44', 'BUS RIDE: 2:13', 'GOT IT GOOD: 3:48'];
+let dragonTracks = ['Twice: 3:06', 'Turn Left: 4:05', 'No Love: 4:26'];
+let justiceTracks = ['Genesis: 3:54', 'Let There Be Light: 4:55', 'D.A.N.C.E: 4:02'];
+let tranadaTracks = ['DO IT: 2:12', '2 The Music: 3:55', 'Go DJ: 2:36'];
+let paakTracks = ['The Bird: 3:37', "Heart Don't Stand a Chance: 5:12", 'The Waters: 2:54'];
+let rayTracks = ["Ain't That Love: 2:53", 'Drown in My Own Tears: 3:21', 'Come Back Baby: 3:06'];
+
+
+addToCollection("Babylon by Bus", "Bob Marley and the Wailers", '1978', bobTracks);
+addToCollection("99.9%", "Kaytranada", '2016', kayTracks)
+addToCollection("Little Dragon", "Little Dragon", '2007', dragonTracks )
+addToCollection("Cross", "Justice", '2007', justiceTracks)
+addToCollection("BUBBA", "Kaytranada", '2019', tranadaTracks)
+addToCollection("Malibu", "Anderson .Paak", '2016', paakTracks)
+addToCollection("Ray Charles", "Ray Charles", '1957', rayTracks)
+
+// console.log(collection);
+
+// // ============================= SHOW COLLECTION ================================================= //
+// //   - Update the `showCollection` function to display the list of tracks 
+// //     for each album with its name and duration.;
 
 function showCollection(array){
      console.log(array.length);
-     for (let i=0; i<array.length; i++){
-          console.log(`"${array[i].Title}" by ${array[i].Artist} was published in ${array[i].Year}.`);
-          };
-     };
+     
+     for (let i = 0; i < array.length; i++){ 
+          console.log(`"${array[i].Title}" by ${array[i].Artist} published in ${array[i].Year}:\n${array[i].Tracks.join('\n')}\n`);
+          }; 
+}
 
-// =========================== FIND BY ARTIST  ============================================= //
+     showCollection(collection)
+// // =========================== FIND BY ARTIST  ============================================= //
 
-function findByArtist(artist, array){
-     artistInArray = []
-     for (let i=0; i<array.length; i++){
-          if (array[i].Artist.includes(artist)){
-               artistInArray.push(artist);
-          };
-     };return artistInArray
-};
+// function findByArtist(artist, array){
+//      artistInArray = []
+//      for (let i=0; i<array.length; i++){
+//           if (array[i].Artist.includes(artist)){
+//                artistInArray.push(artist);
+//           };
+//      };return artistInArray
+// };
 
-console.log(findByArtist('Kaytranada', collection))
-console.log(findByArtist('Justice', collection))
-console.log(findByArtist('Little Dragon', collection))
-console.log(findByArtist('Anderson .Paak', collection))
-console.log(findByArtist('Bob Marley and the Wailers', collection))
-console.log(findByArtist('Ray Charles', collection))
+// console.log(findByArtist('Kaytranada', collection))
+// console.log(findByArtist('Justice', collection))
+// console.log(findByArtist('Little Dragon', collection))
+// console.log(findByArtist('Anderson .Paak', collection))
+// console.log(findByArtist('Bob Marley and the Wailers', collection))
+// console.log(findByArtist('Ray Charles', collection))
 
-// ========================== SEARCH ================================================= //
-// - Update `search` to allow a `trackName` search criteria.
-// - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
-//        
-function search({Artist: name, Year: date}, array){
+// // ========================== SEARCH ================================================= //
+// // - Update `search` to allow a `trackName` search criteria.
+// // - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
+// //        
+
+function search({ Artist: name, Year: date }, trackName, array){
      serachResults = [];     
      for (items of array) {
           if (name === items['Artist'] && date === items['Year']) { // could also be name === items['Artist'] || date === items['Year'] 
@@ -195,20 +212,19 @@ function search({Artist: name, Year: date}, array){
      
 }; 
 
-search({Artist: 'Justice', Year: '2007'}, collection)
-console.log(serachResults);
-search({Artist: 'Ray Charles', Year: '1957'}, collection)
-console.log(serachResults);
-search({Artist: 'Boney M.', Year: '1976'}, collection)
-console.log(serachResults);
+// search({Artist: 'Justice', Year: '2007'}, collection)
+// console.log(serachResults);
+// search({Artist: 'Ray Charles', Year: '1957'}, collection)
+// console.log(serachResults);
+// search({Artist: 'Boney M.', Year: '1976'}, collection)
+// console.log(serachResults);
 
-// =============================================================================================== //
-
-// - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. 
-//        You will need to update the functions to support this new property:
-
-//   
-
+// // =============================================================================================== //
+// - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
+//   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
+//   - Update `search` to allow a `trackName` search criteria. 
+//     - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
+//   - Update the `showCollection` function to display the list of tracks for each album with its name and duration.
 // ```
 //     TITLE by ARTIST, published in YEAR:
 //     1. NAME: DURATION
@@ -218,11 +234,25 @@ console.log(serachResults);
 //     1. NAME: DURATION
 //     2. NAME: DURATION
 // ```
-
-// > Make sure to test all your code!
-
+// // > Make sure to test all your code!
 
 
 
 
 
+
+// function addTracksToAlbum(trackArray){
+//      listOfTracks = [];
+//      tracks = {};
+//      for (let i = 0; i < trackArray.length; i++) {
+//           // tracks['trackNames'] = trackArray[i]
+//           // tracks[trackArray[i]] = durationArray[i]
+//           tracks['trackNames'] = trackArray
+          
+//      };listOfTracks.push(tracks)
+     
+//      // for (items of durationArray) {
+//           // tracks.trackNames[i]['duration'] = durationArray[i]
+//      // }
+//      return tracks;
+// }

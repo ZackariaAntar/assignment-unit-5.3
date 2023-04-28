@@ -21,8 +21,6 @@ console.log('***** Music Collection *****')
 // };
 
 
-
-
 // //  - Test the `addToCollection` function:
 // //   - Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
 // //   - Console.log each album as added using the returned value.
@@ -90,7 +88,7 @@ console.log('***** Music Collection *****')
 // // > When testing your functions, write all tests in the JavaScript file!
 
 
-// // ### Stretch goals
+// // ====================================================== Stretch goals ========================================= //
 
 // // - Create a function called `search`. This function should:
 // //   - Take an input parameter for a search criteria object. Create your solution based on a search object that has these properties:
@@ -142,13 +140,16 @@ function addToCollection(title, artist, yearPublished, tracks){
           return album;
 };
 
-let bobTracks = ['Positive Vibrations: 5:50', 'Punky Reggae Party: 5:51', 'Exodus: 7:41'];
-let kayTracks = ['TRACK UNO : 5:44', 'BUS RIDE: 2:13', 'GOT IT GOOD: 3:48'];
-let dragonTracks = ['Twice: 3:06', 'Turn Left: 4:05', 'No Love: 4:26'];
-let justiceTracks = ['Genesis: 3:54', 'Let There Be Light: 4:55', 'D.A.N.C.E: 4:02'];
-let tranadaTracks = ['DO IT: 2:12', '2 The Music: 3:55', 'Go DJ: 2:36'];
-let paakTracks = ['The Bird: 3:37', "Heart Don't Stand a Chance: 5:12", 'The Waters: 2:54'];
-let rayTracks = ["Ain't That Love: 2:53", 'Drown in My Own Tears: 3:21', 'Come Back Baby: 3:06'];
+
+
+let bobTracks = [{trackName: 'Positive Vibrations', duration: '5:50'}, {trackName: 'Punky Reggae Party', duration: '5:51'}, {trackName: 'Exodus', duration: '7:41'} ];
+let kayTracks = [{trackName: 'TRACK UNO', duration: '5:44'}, {trackName: 'BUS RIDE', duration: '2:13'}, {trackName: 'GOT IT GOOD', duration: '3:48'}];
+let dragonTracks = [{trackName: 'Twice', duration: '3:06'}, {trackName: 'Turn Left', duration: '4:05'}, {trackName: 'No Love', duration: '4:26'}];
+let justiceTracks = [{trackName: 'Genesis', duration: '3:54'}, {trackName: 'Let There Be Light', duration: '4:55'}, {trackName: 'D.A.N.C.E', duration: '4:02'}];
+let tranadaTracks = [{trackName: 'DO IT', duration: '2:12'}, {trackName: '2 The Music', duration: ' 3:55'}, {trackName: 'Go DJ', duration: '2:36'}];
+let paakTracks = [{trackName: 'The Bird', duration: '3:37'}, {trackName: "Heart Don't Stand a Chance", duration: '5:12'}, {trackName: 'The Waters', duration: '2:54'}];
+let rayTracks = [{trackName: "Ain't That Love", duration: '2:53'}, {trackName: 'Drown in My Own Tears', duration: '3:21'}, {trackName: 'Come Back Baby', duration: '3:06'}];
+
 
 
 addToCollection("Babylon by Bus", "Bob Marley and the Wailers", '1978', bobTracks);
@@ -167,105 +168,81 @@ addToCollection("Ray Charles", "Ray Charles", '1957', rayTracks)
 
 function showCollection(array){
      console.log(array.length);
-     
-     for (let i = 0; i < array.length; i++){ 
-          console.log(`"${array[i].Title}" by ${array[i].Artist} published in ${array[i].Year}:\n${array[i].Tracks.join('\n')}\n`);
-          }; 
-}
+     for (let i = 0; i < array.length; i++) {
+          console.log(`"${array[i].Title}" by ${array[i].Artist} published in ${array[i].Year}:`);
+          for (let j = 1; j <= array[i].Tracks.length; j++) {
+               console.log(`${j}: ${array[i].Tracks[j - 1].trackName}`);
+          }console.log('\n');
+     } 
+};
 
-     showCollection(collection)
+
+
+showCollection(collection)
 // // =========================== FIND BY ARTIST  ============================================= //
 
-// function findByArtist(artist, array){
-//      artistInArray = []
-//      for (let i=0; i<array.length; i++){
-//           if (array[i].Artist.includes(artist)){
-//                artistInArray.push(artist);
-//           };
-//      };return artistInArray
-// };
+function findByArtist(artist, array){
+     artistInArray = []
+     for (let i=0; i<array.length; i++){
+          if (array[i].Artist.includes(artist)){
+               artistInArray.push(artist);
+          };
+     };return artistInArray
+};
 
-// console.log(findByArtist('Kaytranada', collection))
-// console.log(findByArtist('Justice', collection))
-// console.log(findByArtist('Little Dragon', collection))
-// console.log(findByArtist('Anderson .Paak', collection))
-// console.log(findByArtist('Bob Marley and the Wailers', collection))
-// console.log(findByArtist('Ray Charles', collection))
+console.log(findByArtist('Kaytranada', collection))
+console.log(findByArtist('Justice', collection))
+console.log(findByArtist('Little Dragon', collection))
+console.log(findByArtist('Anderson .Paak', collection))
+console.log(findByArtist('Bob Marley and the Wailers', collection))
+console.log(findByArtist('Ray Charles', collection))
+console.log(findByArtist('Boney M.', collection))
+
 
 // // ========================== SEARCH ================================================= //
 // // - Update `search` to allow a `trackName` search criteria.
 // // - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
 // //        
 
-function search(name, date, trackName, array){
+function search(album, array){
      serachResults = [];     
-     for (items of array) {
-          for (songs of items['Tracks']) {
-               if (songs.includes(trackName)) {
-                    serachResults.push(trackName, items['Title']);
-                    return console.log("Here's what we found:"), serachResults;          
-               }
-               else if (name === items['Artist'] && date === items['Year']) { // could also be name === items['Artist'] || date === items['Year'] 
+     if (!album.values){
+          return console.log("You didn't search for anything: \n", array);
+     }
+     for (items of array) { // looping through the collection array's entries.
+          for (songs of items['Tracks']) { // looping through the Tracks property entries in the collection array.
+               if (songs.trackName === (album.trackName)) { // 
+                    serachResults.push(items);
+                    return console.log("Here's what we found:"), serachResults;
+                              
+               } else if (album.Artist === items['Artist'] && album.Year === items['Year']) { // could also be name === items['Artist'] || date === items['Year'] 
                     serachResults.push(items);          
                     return console.log("Here's what we found:"), serachResults;
                };
-                              
-          }if (serachResults.length === 0) {
-               return console.log("So sorry, we couldn't find what you were looking for, here's what we do have:\n", array);
-          
+                                 
           };
-     
           
      };
-     
-     
+     if (serachResults.length === 0) {
+          return console.log("So sorry, we couldn't find what you were looking for, here's what we do have:\n", serachResults);       
+        };
 }; 
 
+// search({Artist: 'Kaytranda', Year: '2016' , trackName: 'TRACK UNO'}, collection);
 
-// search('Justice', '2007', 'Genesis', collection)
+// search('Kaytranda', '2016', 'Genesis', collection)
 // console.log(serachResults);
+// search('Kaytranada', '2016', 'adfsgdfsg', collection)
 // search('Kaytranada', '2016', 'adfsgdfsg', collection)
 // search('Justice', '2007', 'garble', collection)
 // search('Little Dragon', '2007', collection)
 // search('Ray Charles', '1957', collection)
 // console.log(serachResults);
-search('Boney M.', '1976', null ,collection)
+// search({Artist: 'Boney M.', Year: '1974' , trackName: 'Daddy Cool'}, collection);
+search({Artist: null, Year: null , trackName: null}, collection);
+// search(null, collection);
+
+// search('Boney M.', '1976', null ,collection)
 console.log(serachResults);
 
 // // =============================================================================================== //
-// - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
-//   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
-//   - Update `search` to allow a `trackName` search criteria. 
-//     - IF the search object has a `trackName` property, only search for that, ignoring any `artist` or `year` properties.
-//   - Update the `showCollection` function to display the list of tracks for each album with its name and duration.
-// ```
-//     TITLE by ARTIST, published in YEAR:
-//     1. NAME: DURATION
-//     2. NAME: DURATION
-//     3. NAME: DURATION
-//     TITLE by ARTIST, published in YEAR:
-//     1. NAME: DURATION
-//     2. NAME: DURATION
-// ```
-// // > Make sure to test all your code!
-
-
-
-
-
-
-// function addTracksToAlbum(trackArray){
-//      listOfTracks = [];
-//      tracks = {};
-//      for (let i = 0; i < trackArray.length; i++) {
-//           // tracks['trackNames'] = trackArray[i]
-//           // tracks[trackArray[i]] = durationArray[i]
-//           tracks['trackNames'] = trackArray
-          
-//      };listOfTracks.push(tracks)
-     
-//      // for (items of durationArray) {
-//           // tracks.trackNames[i]['duration'] = durationArray[i]
-//      // }
-//      return tracks;
-// }
